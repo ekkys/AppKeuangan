@@ -27,4 +27,5 @@ Auth::routes([
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/kategori', [App\Http\Controllers\HomeController::class, 'kategori'])->name('kategori');
-Route::get('/kategori/tambah', [App\Http\Controllers\HomeController::class, 'kategori_tambah'])->name('kategori_tambah');
+Route::get('/kategori/tambah', [App\Http\Controllers\HomeController::class, 'kategoriTambah'])->name('kategoriTambah');
+Route::post('/kategori/aksi', [App\Http\Controllers\HomeController::class, 'kategoriAksi'])->name('kategoriAksi');

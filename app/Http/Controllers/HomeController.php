@@ -32,4 +32,21 @@ class HomeController extends Controller
         $kategori = Kategori::all();
         return view('kategori', ['kategori' => $kategori]);
     }
+
+    public function  kategoriTambah()
+    {
+        return view('kategori_tambah');
+    }
+    public function  kategoriAksi(Request $data)
+    {
+        $data->validate([
+            'kategori' => 'required'
+        ]);
+        $kategori = $data->kategori;
+        Kategori::insert([
+            'kategori' => $kategori
+        ]);
+        return redirect('kategori')->with("sukses", "Kategori berhasil
+           tersimpan");
+    }
 }
