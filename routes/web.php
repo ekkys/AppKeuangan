@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,5 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/kategori', [App\Http\Controllers\HomeController::class, 'kategori'])->name('kategori');
+Route::get('/kategori/tambah', [App\Http\Controllers\HomeController::class, 'kategori_tambah'])->name('kategori_tambah');
