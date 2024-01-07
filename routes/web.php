@@ -31,3 +31,4 @@ Route::get('/kategori/tambah', [App\Http\Controllers\HomeController::class, 'kat
 Route::post('/kategori/aksi', [App\Http\Controllers\HomeController::class, 'kategoriAksi'])->name('kategoriAksi');
 Route::get('/kategori/edit/{id}', [App\Http\Controllers\HomeController::class, 'kategoriEdit'])->name('kategoriEdit');
 Route::put('/kategori/update/{id}', [App\Http\Controllers\HomeController::class, 'kategoriUpdate'])->name('kategoriUpdate');
+Route::get('/kategori/hapus/{id}', [App\Http\Controllers\HomeController::class, 'kategoriHapus'])->name('kategoriHapus');

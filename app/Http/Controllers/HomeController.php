@@ -74,4 +74,11 @@ class HomeController extends Controller
         // alihkan halaman ke halaman kategori
         return redirect('kategori')->with("sukses", "Kategori berhasil diubah");
     }
+
+    public function kategoriHapus($id)
+    {
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+        return redirect('kategori')->with("sukses", "Kategori berhasil dihapus");
+    }
 }
