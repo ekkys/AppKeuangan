@@ -10,8 +10,12 @@ btn-sm btn-primary">Tambah</a>
                     </div>
 
                     <div class="card-body">
+                        @if (Session::has('sukses'))
+                            <div class="alert alert-success">
+                                {{ Session::get('sukses') }}
+                            </div>
+                        @endif
                         <table class="table table-bordered">
-                            654
                             <thead>
                                 <tr>
                                     <th width="1%">No</th>

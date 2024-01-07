@@ -49,4 +49,29 @@ class HomeController extends Controller
         return redirect('kategori')->with("sukses", "Kategori berhasil
            tersimpan");
     }
+
+    public function kategoriEdit($id)
+    {
+        $kategori = Kategori::find($id);
+        return view('kategori_edit', ['kategori' => $kategori]);
+    }
+
+    public function kategoriUpdate($id, Request $data)
+    {
+        // form validasi
+
+        $data->validate([
+            'kategori' => 'required'
+        ]);
+
+        $nama_kategori = $data->kategori;
+
+
+        // update kategori
+        $kategori = Kategori::find($id);
+        $kategori->kategori = $nama_kategori;
+        $kategori->save();
+        // alihkan halaman ke halaman kategori
+        return redirect('kategori')->with("sukses", "Kategori berhasil diubah");
+    }
 }
