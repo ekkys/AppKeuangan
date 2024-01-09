@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,12 +31,12 @@ class HomeController extends Controller
     public function kategori()
     {
         $kategori = Kategori::all();
-        return view('kategori', ['kategori' => $kategori]);
+        return view('kategoris.kategori', ['kategori' => $kategori]);
     }
 
     public function  kategoriTambah()
     {
-        return view('kategori_tambah');
+        return view('kategori.kategori_tambah');
     }
     public function  kategoriAksi(Request $data)
     {
@@ -46,14 +47,13 @@ class HomeController extends Controller
         Kategori::insert([
             'kategori' => $kategori
         ]);
-        return redirect('kategori')->with("sukses", "Kategori berhasil
-           tersimpan");
+        return redirect('kategori')->with("sukses", "Kategori berhasil tersimpan");
     }
 
     public function kategoriEdit($id)
     {
         $kategori = Kategori::find($id);
-        return view('kategori_edit', ['kategori' => $kategori]);
+        return view('kategori.kategori_edit', ['kategori' => $kategori]);
     }
 
     public function kategoriUpdate($id, Request $data)
@@ -80,5 +80,21 @@ class HomeController extends Controller
         $kategori = Kategori::find($id);
         $kategori->delete();
         return redirect('kategori')->with("sukses", "Kategori berhasil dihapus");
+    }
+
+    public function transaksi()
+    {
+        //mengambil
+        $transaksi = Transaksi::all();
+        return view('transaksis.transaksi', ['transaksi' => $transaksi]);
+    }
+
+    public function transaksiTambah()
+    {
+        return view('transaksis.transaksi_tambah');
+    }
+
+    public function transaksiAksi(Request $request)
+    {
     }
 }
