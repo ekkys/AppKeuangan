@@ -9,12 +9,12 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $table = "transaksi";
 
-    protected $fillable = ['tanggal', 'jenis', 'kategori_id', 'nominal', 'keterangan'];
+    protected $table = "transaksi";
+    protected $fillable = ["tanggal", "jenis", "kategori_id", "nominal", "keterangan"];
 
     public function kategori()
     {
-        return $this->belongsTo('App\Kategori');
+        return $this->belongsTo(Kategori::class);
     }
 }

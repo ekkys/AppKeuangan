@@ -28,6 +28,7 @@ class HomeController extends Controller
         return view('home');
     }
 
+    //CRUD KATEGORI
     public function kategori()
     {
         $kategori = Kategori::all();
@@ -82,19 +83,39 @@ class HomeController extends Controller
         return redirect('kategori')->with("sukses", "Kategori berhasil dihapus");
     }
 
+    // CRUD TRANSAKSI
     public function transaksi()
     {
         //mengambil
-        $transaksi = Transaksi::all();
-        return view('transaksis.transaksi', ['transaksi' => $transaksi]);
+        $transaksis = Transaksi::all();
+        // dd($transaksis);
+        return view('transaksis.transaksi', ['transaksis' => $transaksis]);
     }
 
     public function transaksiTambah()
     {
-        return view('transaksis.transaksi_tambah');
+        $kategori = Kategori::all();
+        return view('transaksis.transaksi_tambah', ['kategori' => $kategori]);
     }
 
-    public function transaksiAksi(Request $request)
+    public function transaksiSimpan(Request $data)
     {
+        // validasi tanggal,jenis,kategori,nominal wajib isi
+        $data->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'kategori' => 'required',
+            'nominal' => 'required'
+        ]);
+        // insert data ke table transaksi
+        Transaksi::insert([
+            'tanggal' => $data->tanggal,
+            'jenis' => $data->jenis,
+            'kategori_id' => $data->kategori,
+            'nominal' => $data->nominal,
+            'keterangan' => $data->keterangan
+        ]);
+        // alihkan halaman ke halaman transaksi sambil mengirim session pesan
+        return redirect('transaksi')->with("sukses", "Transaksi berhasil tersimpan");
     }
 }
