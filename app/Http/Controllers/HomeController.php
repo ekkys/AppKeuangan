@@ -128,4 +128,14 @@ class HomeController extends Controller
             return redirect('transaksi')->with("error", "Transaksi gagal dihapus");
         };
     }
+
+    public function transaksiEdit($id)
+    {
+        $kategori = Kategori::all();
+        $transaksi = Transaksi::find($id);
+        return view('transaksis.transaksi_edit', [
+            'transaksi' => $transaksi,
+            'kategori' => $kategori
+        ]);
+    }
 }
