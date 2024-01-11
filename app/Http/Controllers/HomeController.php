@@ -118,4 +118,14 @@ class HomeController extends Controller
         // alihkan halaman ke halaman transaksi sambil mengirim session pesan
         return redirect('transaksi')->with("sukses", "Transaksi berhasil tersimpan");
     }
+
+    public function transaksiHapus($id)
+    {
+        $hapus = Transaksi::find($id);
+        if ($hapus->delete()) {
+            return redirect('transaksi')->with("sukses", "Transaksi berhasil dihapus");
+        } else {
+            return redirect('transaksi')->with("error", "Transaksi gagal dihapus");
+        };
+    }
 }

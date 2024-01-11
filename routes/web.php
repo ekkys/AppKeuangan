@@ -40,3 +40,4 @@ Route::get('/kategori/hapus/{id}', [App\Http\Controllers\HomeController::class, 
 Route::get('/transaksi', [App\Http\Controllers\HomeController::class, 'transaksi'])->name('transaksi');
 Route::get('/transaksi/tambah', [App\Http\Controllers\HomeController::class, 'transaksiTambah'])->name('transaksiTambah');
 Route::post('/transaksi/simpan', [App\Http\Controllers\HomeController::class, 'transaksiSimpan'])->name('transaksiSimpan');
+Route::get('/transaksi/hapus/{id}', [App\Http\Controllers\HomeController::class, 'transaksiHapus'])->name('transaksiHapus');
