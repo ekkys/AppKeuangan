@@ -17,6 +17,7 @@
                                     </span>
                                 @endif
                             </div>
+
                             <div class="form-group">
                                 <label>Jenis</label>
                                 <select class="form-control" name="jenis">
@@ -24,6 +25,7 @@
                                     <option value="Pemasukan">Pemasukan</option>
                                     <option value="Pengeluaran">Pengeluaran</option>
                                 </select>
+
                                 @if ($errors->has('jenis'))
                                     <span class="text-danger">
                                         <strong>{{ $errors->first('jenis') }}</strong>
@@ -34,6 +36,7 @@
                                 <label>Kategori</label>
                                 <select class="form-control" name="kategori">
                                     <option value="">- Pilih Kategori</option>
+
                                     @foreach ($kategori as $k)
                                         <option value="{{ $k->id }}">{{ $k->kategori }}</option>
                                     @endforeach
@@ -53,6 +56,10 @@
                                     </span>
                                 @endif
                             </div>
+
+                            <div class="form-group">
+                            </div>
+
                             <div class="form-group">
                                 <label>Keterangan</label>
                                 <textarea class="form-control" name="keterangan"></textarea>

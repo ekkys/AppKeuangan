@@ -42,4 +42,4 @@ Route::get('/transaksi/tambah', [App\Http\Controllers\HomeController::class, 'tr
 Route::post('/transaksi/simpan', [App\Http\Controllers\HomeController::class, 'transaksiSimpan'])->name('transaksiSimpan');
 Route::get('/transaksi/hapus/{id}', [App\Http\Controllers\HomeController::class, 'transaksiHapus'])->name('transaksiHapus');
 Route::get('/transaksi/edit/{id}', [App\Http\Controllers\HomeController::class, 'transaksiEdit'])->name('transaksiEdit');
-Route::post('/transaksi/update/{id}', [App\Http\Controllers\HomeController::class, 'transaksiUpdte'])->name('transaksiUpdate');
+Route::put('/transaksi/update/{id}', [App\Http\Controllers\HomeController::class, 'transaksiUpdate'])->name('transaksiUpdate');

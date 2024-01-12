@@ -65,8 +65,8 @@ btn-sm btn-primary">Input
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
+                        {{ $transaksis->links() }}
                     </div>
                 </div>
             </div>

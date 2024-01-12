@@ -86,8 +86,9 @@ class HomeController extends Controller
     // CRUD TRANSAKSI
     public function transaksi()
     {
-        //mengambil
-        $transaksis = Transaksi::all();
+        //mengambil data
+        $transaksis = Transaksi::orderBy('id', 'desc')->paginate(6);
+
         // dd($transaksis);
         return view('transaksis.transaksi', ['transaksis' => $transaksis]);
     }
@@ -137,5 +138,31 @@ class HomeController extends Controller
             'transaksi' => $transaksi,
             'kategori' => $kategori
         ]);
+    }
+
+    public function transaksiUpdate($id, Request $data)
+    {
+        // validasi tanggal,jenis,kategori,nominal wajib isi
+        $data->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'kategori' => 'required',
+            'nominal' => 'required'
+        ]);
+
+        // ambil transaksi berdasarkan id
+        $transaksi = Transaksi::find($id);
+
+        // update data ke table transaksi
+        $transaksi->tanggal = $data->tanggal;
+        $transaksi->jenis = $data->jenis;
+        $transaksi->kategori_id = $data->kategori;
+        $transaksi->nominal = $data->nominal;
+        $transaksi->keterangan = $data->keterangan;
+
+        //simpan perubahan
+        $transaksi->save();
+
+        return redirect('transaksi')->with("sukses", "Transaksi berhasil diubah");
     }
 }
