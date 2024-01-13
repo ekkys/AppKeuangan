@@ -5,8 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ url('/transaksi/tambah') }}" class="float-right btn
-btn-sm btn-primary">Input
+                        <a href="{{ url('/transaksi/tambah') }}" class="float-right btn btn-sm btn-primary">Input
                             Transaksi</a>
                         Data Transaksi
                     </div>
@@ -16,60 +15,74 @@ btn-sm btn-primary">Input
                                 {{ Session::get('sukses') }}
                             </div>
                         @endif
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" rowspan="2" width="11%">Tanggal</th>
-                                    <th class="text-center" rowspan="2" width="5%">Jenis</th>
-                                    <th class="text-center" rowspan="2">Keterangan</th>
-                                    <th class="text-center" rowspan="2">Kategori</th>
-                                    <th class="text-center" colspan="2">Transaksi</th>
-                                    <th class="text-center" rowspan="2" width="13%">OPSI</th>
-                                </tr>
-                                <tr>
-
-                                    <th class="text-center">Pemasukan</th>
-                                    <th class="text-center">Pengeluaran</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($transaksis as $transaksi)
-                                    <tr>
-                                        <td class="text-center">
-                                            {{ date('d-m-Y', strtotime($transaksi->tanggal)) }}
-                                        </td>
-                                        <td class="text-center">{{ $transaksi->jenis }}</td>
-                                        <td class="text-center">{{ $transaksi->keterangan }}</td>
-                                        <td class="text-center">{{ $transaksi->kategori->kategori }}</td>
-                                        <td class="text-center">
-                                            @if ($transaksi->jenis == 'Pemasukan')
-                                                {{ 'Rp.' . number_format($transaksi->nominal) . ',-' }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if ($transaksi->jenis == 'Pengeluaran')
-                                                {{ 'Rp.' . number_format($transaksi->nominal) . ',-' }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ url('/transaksi/edit/' . $transaksi->id) }}"
-                                                class="btn btn-sm btn-warning">Edit</a>
-                                            <a href="{{ url('/transaksi/hapus/' . $transaksi->id) }}"
-                                                class="btn btn-sm btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{ $transaksis->links() }}
+                        <div class="row">
+                            <div class="col-md-3">
+                                <form action="{{ url('/transaksi/cari') }}" method="get" class="form-inline">
+                                    <input type="text" name="cari" value="<?php
+                                    if (isset($_GET['cari'])) {
+                                        echo $_GET['cari'];
+                                    } ?>" class="form-control"
+                                        placeholder="Cari ..">
+                                    <input type="submit" class="btn btn-primary" value="Cari">
+                                </form>
+                            </div>
+                        </div>
                     </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" rowspan="2" width="11%">Tanggal</th>
+                                <th class="text-center" rowspan="2" width="5%">Jenis</th>
+                                <th class="text-center" rowspan="2">Keterangan</th>
+                                <th class="text-center" rowspan="2">Kategori</th>
+                                <th class="text-center" colspan="2">Transaksi</th>
+                                <th class="text-center" rowspan="2" width="13%">OPSI</th>
+                            </tr>
+                            <tr>
+
+                                <th class="text-center">Pemasukan</th>
+                                <th class="text-center">Pengeluaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($transaksis as $transaksi)
+                                <tr>
+                                    <td class="text-center">
+                                        {{ date('d-m-Y', strtotime($transaksi->tanggal)) }}
+                                    </td>
+                                    <td class="text-center">{{ $transaksi->jenis }}</td>
+                                    <td class="text-center">{{ $transaksi->keterangan }}</td>
+                                    <td class="text-center">{{ $transaksi->kategori->kategori }}</td>
+                                    <td class="text-center">
+                                        @if ($transaksi->jenis == 'Pemasukan')
+                                            {{ 'Rp.' . number_format($transaksi->nominal) . ',-' }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($transaksi->jenis == 'Pengeluaran')
+                                            {{ 'Rp.' . number_format($transaksi->nominal) . ',-' }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ url('/transaksi/edit/' . $transaksi->id) }}"
+                                            class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ url('/transaksi/hapus/' . $transaksi->id) }}"
+                                            class="btn btn-sm btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $transaksis->links() }}
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

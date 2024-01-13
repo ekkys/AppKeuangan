@@ -165,4 +165,24 @@ class HomeController extends Controller
 
         return redirect('transaksi')->with("sukses", "Transaksi berhasil diubah");
     }
+
+    public function transaksiCari(Request $data)
+    {
+        //keyword pencarian
+        $cari = $data->cari;
+
+        //mengambil data transaksi
+        $transaksis = Transaksi::orderBY('id', 'desc')
+            ->orWhere('jenis', 'like', "%" . $cari . "%")
+            ->orWhere('tanggal', 'like', "%" . $cari . "%")
+            ->orWhere('keterangan', 'like', "%" . $cari . "%")
+            ->orWhere('nominal', '=', "%" . $cari . "%")
+            ->paginate(6);
+
+        //menambahkan keyword pencarian ke data transaksi
+        $transaksis->appends($data->only('cari'));
+
+        // passing data transaksi ke view transaksi.blade.php
+        return view('transaksis.transaksi', ['transaksis' => $transaksis]);
+    }
 }
