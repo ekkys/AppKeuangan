@@ -37,7 +37,7 @@ class HomeController extends Controller
 
     public function  kategoriTambah()
     {
-        return view('kategori.kategori_tambah');
+        return view('kategoris.kategori_tambah');
     }
     public function  kategoriAksi(Request $data)
     {
@@ -54,7 +54,7 @@ class HomeController extends Controller
     public function kategoriEdit($id)
     {
         $kategori = Kategori::find($id);
-        return view('kategori.kategori_edit', ['kategori' => $kategori]);
+        return view('kategoris.kategori_edit', ['kategori' => $kategori]);
     }
 
     public function kategoriUpdate($id, Request $data)

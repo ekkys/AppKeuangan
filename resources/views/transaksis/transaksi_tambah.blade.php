@@ -18,7 +18,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            ~<div class="form-group">
                                 <label>Jenis</label>
                                 <select class="form-control" name="jenis">
                                     <option value="">- Pilih Jenis</option>
