@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label>Keterangan</label>
-                                <textarea class="form-control" name="keterangan"></textarea>
+                                <textarea class="form-control" name="keterangan" required></textarea>
                                 @if ($errors->has('keterangan'))
                                     <span class="text-danger">
                                         <strong>{{ $errors->first('keterangan') }}</strong>

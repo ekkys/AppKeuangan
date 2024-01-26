@@ -92,7 +92,7 @@ class HomeController extends Controller
     public function transaksi()
     {
         //mengambil data
-        $transaksis = Transaksi::orderBy('id', 'desc')->paginate(6);
+        $transaksis = Transaksi::orderBy('id', 'asc')->paginate(6);
 
         // dd($transaksis);
         return view('transaksis.transaksi', ['transaksis' => $transaksis]);
@@ -166,7 +166,7 @@ class HomeController extends Controller
         $transaksi->keterangan = $data->keterangan;
 
         //simpan perubahan
-        $transaksi->save();
+        $transaksi->update();
 
         return redirect('transaksi')->with("sukses", "Transaksi berhasil diubah");
     }

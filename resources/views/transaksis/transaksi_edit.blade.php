@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Keterangan</label>
-                                <textarea class="form-control" name="keterangan">{{ $transaksi->keterangan }}</textarea>
+                                <textarea class="form-control" name="keterangan" required>{{ $transaksi->keterangan }}</textarea>
                                 @if ($errors->has('keterangan'))
                                     <span class="text-danger">
                                         <strong>{{ $errors->first('keterangan') }}</strong>
