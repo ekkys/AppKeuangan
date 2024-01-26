@@ -14,6 +14,8 @@ class TransaksiSeeder extends Seeder
      */
     public function run(): void
     {
+
+
         // pengaturan bahasa faker
         $faker = Faker::create('id_ID');
 
@@ -22,7 +24,7 @@ class TransaksiSeeder extends Seeder
             //data dummy
             $tgl_hari_ini = date('Y-m-d');
             $jenis = $faker->randomElement(["Pemasukan", "Pengeluaran"]);
-            $kategori = $faker->randomElement(["1", "2"]);
+            $kategori = $faker->randomElement(["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]);
             $nominal = $faker->randomElement(["100000", "200000", "300000", "50000", "1000000", "1500000"]);
             $keterangan = "";
 

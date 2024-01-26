@@ -80,6 +80,11 @@ class HomeController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
+
+        // menghapus transaksi berdasarkan id kategori yang dihapus
+        $transaksi = Transaksi::where('kategori_id', $id);
+        $transaksi->delete();
+
         return redirect('kategori')->with("sukses", "Kategori berhasil dihapus");
     }
 

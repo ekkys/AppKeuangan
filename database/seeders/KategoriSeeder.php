@@ -15,15 +15,15 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
         // pengaturan bahasa faker
-        $faker = Faker::create('id_ID');
+        // $faker = Faker::create('id_ID');
 
-        for ($i = 1; $i <= 2; $i++) {
-            $kategori = $faker->randomElement(["Pemasukan", "Pengeluaran"]);
+        // for ($i = 1; $i <= 4; $i++) {
+        //     $kategori = $faker->randomElement(["Gaji", "Laba", "Beli Bahan"]);
 
-            // insert ke database
-            DB::table('kategori')->insert([
-                'kategori' => $kategori
-            ]);
-        }
+        //     // insert ke database
+        //     DB::table('kategori')->insert([
+        //         'kategori' => $kategori
+        //     ]);
+        // }
     }
 }
