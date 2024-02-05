@@ -227,4 +227,32 @@ class HomeController extends Controller
         // passing data laporan ke view laporan
         return view('laporans.laporan_hasil', ['laporan' => $laporan, 'kategori' => $kategori, 'dari' => $dari, 'sampai' => $sampai, 'kat' => $id_kategori]);
     }
+    public function laporanPrint(Request $request)
+    {
+        // dd($request->all());
+        //data kategori
+        $kategori = Kategori::all();
+
+        // data filter
+        $dari =  $request->dari;
+        $sampai =  $request->sampai;
+        $id_kategori = $request->kategori;
+
+        //periksa kategori yang dipilih
+
+        if ($id_kategori == "semua") {
+            //jika semua, tampilkan semua transaksi
+            $laporan = Transaksi::whereBetween('tanggal', [$dari, $sampai])
+                ->orderBy('id', 'desc')->get();
+        } else {
+            // jika yang dipilih bukan "semua",
+            //tampilkan transaksi berdasarkan kategori yang dipilih
+
+            $laporan = Transaksi::where('kategori_id', $id_kategori)
+                ->whereBetween('tanggal', [$dari, $sampai])
+                ->orderBy('id', 'desc')->get();
+        }
+        // passing data laporan ke view laporan
+        return view('laporans.laporan_print', ['laporan' => $laporan, 'kategori' => $kategori, 'dari' => $dari, 'sampai' => $sampai, 'kat' => $id_kategori]);
+    }
 }

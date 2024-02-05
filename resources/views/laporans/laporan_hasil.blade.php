@@ -132,8 +132,15 @@
 
                                 </tr>
                                 <tr>
-                                    <td colspan="6" class="text-right bg-primary text-white font-weight-bold">
-                                        {{ 'Rp. ' . number_format($saldo) . ' ,-' }}</td>
+                                    @if ($saldo >= 0)
+                                        <td class="text-right font-weight-bold" colspan="4">SALDO</td>
+                                        <td colspan="3" class="text-center bg-primary text-white font-weight-bold">
+                                            {{ 'Rp. ' . number_format($saldo) . ' ,-' }}</td>
+                                    @else
+                                        <td class="text-right font-weight-bold" colspan="4">SALDO</td>
+                                        <td colspan="6" class="text-center bg-primary text-white font-weight-bold">
+                                            {{ 'Rp,-' }}</td>
+                                    @endif
                                 </tr>
 
                             </tfoot>
