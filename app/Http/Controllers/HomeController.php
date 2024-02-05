@@ -182,12 +182,49 @@ class HomeController extends Controller
             ->orWhere('tanggal', 'like', "%" . $cari . "%")
             ->orWhere('keterangan', 'like', "%" . $cari . "%")
             ->orWhere('nominal', '=', "%" . $cari . "%")
-            ->paginate(6);
+            ->paginate(10);
 
         //menambahkan keyword pencarian ke data transaksi
         $transaksis->appends($data->only('cari'));
 
         // passing data transaksi ke view transaksi.blade.php
         return view('transaksis.transaksi', ['transaksis' => $transaksis]);
+    }
+
+    public function laporan()
+    {
+        // data kategori
+        $kategori = Kategori::all();
+
+        // passing data kategori ke view laporan
+        return view('laporans.laporan', ['kategori' => $kategori]);
+    }
+    public function laporanHasil(Request $request)
+    {
+        // dd($request->all());
+        //data kategori
+        $kategori = Kategori::all();
+
+        // data filter
+        $dari =  $request->dari;
+        $sampai =  $request->sampai;
+        $id_kategori = $request->kategori;
+
+        //periksa kategori yang dipilih
+
+        if ($id_kategori == "semua") {
+            //jika semua, tampilkan semua transaksi
+            $laporan = Transaksi::whereBetween('tanggal', [$dari, $sampai])
+                ->orderBy('id', 'desc')->get();
+        } else {
+            // jika yang dipilih bukan "semua",
+            //tampilkan transaksi berdasarkan kategori yang dipilih
+
+            $laporan = Transaksi::where('kategori_id', $id_kategori)
+                ->whereBetween('tanggal', [$dari, $sampai])
+                ->orderBy('id', 'desc')->get();
+        }
+        // passing data laporan ke view laporan
+        return view('laporans.laporan_hasil', ['laporan' => $laporan, 'kategori' => $kategori, 'dari' => $dari, 'sampai' => $sampai, 'kat' => $id_kategori]);
     }
 }
