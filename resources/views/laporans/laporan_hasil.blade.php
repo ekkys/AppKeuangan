@@ -116,6 +116,9 @@
                                         } elseif ($t->jenis == 'Pengeluaran') {
                                             $total_pengeluaran += $t->nominal;
                                         }
+
+                                        $saldo = $total_pemasukan - $total_pengeluaran;
+
                                     @endphp
                                 @endforeach
                             </tbody>
@@ -128,6 +131,11 @@
                                         {{ 'Rp. ' . number_format($total_pengeluaran) . ' ,-' }}</td>
 
                                 </tr>
+                                <tr>
+                                    <td colspan="6" class="text-right bg-primary text-white font-weight-bold">
+                                        {{ 'Rp. ' . number_format($saldo) . ' ,-' }}</td>
+                                </tr>
+
                             </tfoot>
                         </table>
                     </div>
