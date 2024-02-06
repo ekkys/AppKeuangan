@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -254,5 +256,10 @@ class HomeController extends Controller
         }
         // passing data laporan ke view laporan
         return view('laporans.laporan_print', ['laporan' => $laporan, 'kategori' => $kategori, 'dari' => $dari, 'sampai' => $sampai, 'kat' => $id_kategori]);
+    }
+
+    public function laporanExcel()
+    {
+        return  Excel::download(new LaporanExport, 'laporan.xlsx');
     }
 }

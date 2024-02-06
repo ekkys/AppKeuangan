@@ -48,4 +48,4 @@ Route::get('/transaksi/cari', [App\Http\Controllers\HomeController::class, 'tran
 //Laporan
 Route::get('/laporan', [App\Http\Controllers\HomeController::class, 'laporan'])->name('laporan');
 Route::get('/laporan/hasil', [App\Http\Controllers\HomeController::class, 'laporanHasil'])->name('laporanHasil');
-Route::get('/laporan/print', [App\Http\Controllers\HomeController::class, 'laporanPrint'])->name('laporanHasil');
+Route::get('/laporan/excel', [App\Http\Controllers\HomeController::class, 'laporanExcel'])->name('laporanExcel');
